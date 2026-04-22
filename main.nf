@@ -4,7 +4,7 @@ params.batch_dir      = null
 params.exomiser_jar   = null
 params.spring_config  = null
 params.results_dir    = null
-params.chmod          = "g+rw"
+params.chmod          = "g+rwx"
 
 // Validate required params
 if (!params.batch_dir)     error "Please provide --batch_dir"
