@@ -35,8 +35,13 @@ workflow {
     Channel
         .fromPath("${params.batch_dir}/*.txt", checkIfExists: true)
         .set { batch_files }
+
+    RUN_EXOMISER(batch_files)
+}
+
 workflow.onComplete {
     def dirs = [
+        new File("..").canonicalPath,
         "reports",
         params.results_dir
     ]
@@ -47,7 +52,3 @@ workflow.onComplete {
         }
     }
 }
-
-    RUN_EXOMISER(batch_files)
-}
-
