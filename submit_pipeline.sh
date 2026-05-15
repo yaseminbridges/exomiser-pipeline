@@ -16,5 +16,4 @@ nextflow run "$SCRIPT_DIR/main.nf" \
     --exomiser_jar  "$EXOMISER_JAR" \
     --spring_config "$SPRING_CONFIG" \
     --results_dir   "$RESULTS_DIR" \
-    "$@" \
-    |& tee "$WORK_DIR/logs/nextflow.log"
+    "$@"
