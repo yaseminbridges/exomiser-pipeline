@@ -11,7 +11,7 @@ PHENOPACKET_DIR=""
 EXOMISER_JAR="/re_gecip/enhanced_interpretation/ybridges/100KGP_phenopackets/main_programme/configurations/exomiser-15.0.0/2512/model_1/exomiser-cli-15.0.0-RC5/exomiser-cli-15.0.0-RC5.jar"
 SPRING_CONFIG="/re_gecip/enhanced_interpretation/ybridges/100KGP_phenopackets/main_programme/configurations/exomiser-15.0.0/2512/model_1/application.properties"
 RESULTS_DIR="/re_gecip/enhanced_interpretation/ybridges/100KGP_phenopackets/main_programme/results"
-PHEVAL_EXOMISER_IMAGE="/re_gecip/enhanced_interpretation/ubridges/100KGP_phenopackets/pipeline/pheval-exomiser.sif"
+PHEVAL_EXOMISER_IMAGE="/re_gecip/enhanced_interpretation/ybridges/100KGP_phenopackets/pipeline/pheval-exomiser.sif"
 PHEVAL_OUTPUT_DIR=""
 SCORE_NAME=""
 MAX_JOBS=0              # lines per batch file — 0 = no split (one file), 10 or 20 = run in parallel chunks
