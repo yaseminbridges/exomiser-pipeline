@@ -31,6 +31,8 @@ if (!params.results_dir)       error "Please provide --results_dir"
 if (!params.pheval_exomiser_image)      error "Please provide --pheval_exomiser_image"
 if (!params.pheval_output_dir) error "Please provide --pheval_output_dir"
 if (!params.score_name)        error "Please provide --score_name"
+if (!params.analysis_yaml)     error "Please provide --analysis_yaml"
+if (!params.vcf_dir)           error "Please provide --vcf_dir"
 
 process PREPARE_BATCHES {
     container params.pheval_exomiser_image
@@ -39,9 +41,7 @@ process PREPARE_BATCHES {
     path "tool_input_commands/*.txt"
 
     script:
-    def analysis_opt  = params.analysis_yaml    ? "--analysis-yaml ${params.analysis_yaml}" : ""
-    def vcf_opt       = params.vcf_dir          ? "--vcf-dir ${params.vcf_dir}"             : ""
-    def variant_flag  = params.variant_analysis ? "--variant-analysis"                      : ""
+    def variant_flag  = params.variant_analysis ? "--variant-analysis" : ""
     def formats       = params.output_formats ? params.output_formats.tokenize(",").collect { "--output-formats ${it.trim()}" }.join(" \\\n        ") : ""
     """
     pheval-exomiser prepare-exomiser-batch \\
@@ -51,8 +51,8 @@ process PREPARE_BATCHES {
         --exomiser-version ${params.exomiser_version} \\
         --batch-prefix ${params.batch_prefix} \\
         --max-jobs ${params.max_jobs} \\
-        ${analysis_opt} \\
-        ${vcf_opt} \\
+        --analysis-yaml ${params.analysis_yaml} \\
+        --vcf-dir ${params.vcf_dir} \\
         ${formats} \\
         ${variant_flag}
     """
