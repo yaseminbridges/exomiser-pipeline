@@ -117,13 +117,7 @@ workflow {
 }
 
 workflow.onComplete {
-    def dirs = [
-        new File("..").canonicalPath,
-        "reports",
-        params.results_dir,
-        params.pheval_output_dir
-    ]
-    dirs.each { dir ->
+    [params.results_dir, params.pheval_output_dir].each { dir ->
         if (dir && new File(dir).exists()) {
             ["chmod", "-R", params.chmod, dir].execute().waitFor()
             log.info "Permissions updated (${params.chmod}): ${dir}"
