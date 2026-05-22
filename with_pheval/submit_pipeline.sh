@@ -9,6 +9,13 @@ export NXF_OFFLINE='true'
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 mkdir -p "$WORK_DIR/logs"
 
+chmod_on_exit() {
+    chmod -R g+rwx "$(dirname "$WORK_DIR")" 2>/dev/null || true
+    chmod -R g+rwx "$RESULTS_DIR"           2>/dev/null || true
+    chmod -R g+rwx "$PHEVAL_OUTPUT_DIR"     2>/dev/null || true
+}
+trap chmod_on_exit EXIT
+
 nextflow run "$SCRIPT_DIR/main.nf" \
     -resume \
     --phenopacket_dir   "$PHENOPACKET_DIR" \
