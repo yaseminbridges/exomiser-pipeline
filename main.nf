@@ -40,15 +40,8 @@ workflow {
 }
 
 workflow.onComplete {
-    def dirs = [
-        new File("..").canonicalPath,
-        "reports",
-        params.results_dir
-    ]
-    dirs.each { dir ->
-        if (dir && new File(dir).exists()) {
-            ["chmod", "-R", params.chmod, dir].execute().waitFor()
-            log.info "Permissions updated (${params.chmod}): ${dir}"
-        }
+    if (params.results_dir && new File(params.results_dir).exists()) {
+        ["chmod", "-R", params.chmod, params.results_dir].execute().waitFor()
+        log.info "Permissions updated (${params.chmod}): ${params.results_dir}"
     }
 }
