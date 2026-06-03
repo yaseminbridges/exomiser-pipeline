@@ -19,7 +19,7 @@ Runs a three-stage pipeline on an LSF cluster:
 Navigate to the directory where you want the `.sif` file to be saved, then run:
 
 ```bash
-singularity pull pheval-exomiser.sif docker://docker-remote.artifactory.aws.gel.ac/yaseminbridges/pheval-exomiser:latest
+singularity pull pheval-exomiser.sif docker://docker-remote.artifactory.aws.gel.ac/yaseminbridges/pheval-exomiser:amd64
 ```
 
 The `.sif` file will be created in that directory. Update `PHEVAL_EXOMISER_IMAGE` in `run.sh` to point to its full path.
@@ -52,7 +52,7 @@ bash run.sh
 | `DISEASE_ANALYSIS` | no | Create PhEval disease results (default: `false`)                                                |
 | `OUTPUT_FORMATS` | no | Comma-separated Exomiser output formats (default: `JSON,TSV_GENE,TSV_VARIANT,HTML,PARQUET,VCF`) |
 | `ANALYSIS_YAML` | yes | Path to the Exomiser analysis `.yml` file                                                       |
-| `VCF_DIR` | yes | Path to VCF directory for variant analysis                                                      |
+| `VCF_DIR` | no  | Path to VCF directory for variant analysis — leave empty to use paths from phenopackets         |
 
 ### Parallel batching
 

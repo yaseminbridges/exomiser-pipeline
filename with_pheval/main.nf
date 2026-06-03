@@ -10,7 +10,7 @@ params.score_name           = null
 
 // prepare-exomiser-batch options
 params.analysis_yaml        = null
-params.vcf_dir              = null
+params.vcf_dir              = "/null_path_001"
 params.exomiser_version     = "15.0.0"
 params.batch_prefix         = "RUN"
 params.max_jobs             = 0
@@ -32,13 +32,12 @@ if (!params.pheval_exomiser_image)      error "Please provide --pheval_exomiser_
 if (!params.pheval_output_dir) error "Please provide --pheval_output_dir"
 if (!params.score_name)        error "Please provide --score_name"
 if (!params.analysis_yaml)     error "Please provide --analysis_yaml"
-if (!params.vcf_dir)           error "Please provide --vcf_dir"
 
 process PREPARE_BATCHES {
     container params.pheval_exomiser_image
 
     output:
-    path "tool_input_commands/*.txt"
+    path "*.txt"
 
     script:
     def variant_flag  = params.variant_analysis ? "--variant-analysis" : ""
